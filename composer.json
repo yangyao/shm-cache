@@ -1,0 +1,21 @@
+{
+    "name": "yangyao/shm-cache",
+    "description": "yet another php shm cache",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "yangyao",
+            "email": "yangyaoapp@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "ext-shmop": "*"
+    },
+    "autoload":{
+        "psr-4":{
+            "Yangyao\\ShmCache\\":"src"
+        }
+    }
+}
