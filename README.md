@@ -3,6 +3,12 @@ yet another php cache based on share memory
 
 ## how to use ?
 
+install var composer 
+
+```php
+composer require yangyao/shm-cache
+```
+
 basic use .
 
 ```php
