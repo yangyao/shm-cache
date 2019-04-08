@@ -80,7 +80,8 @@ data
 
 all
 
-![all](https://user-images.githubusercontent.com/5866775/55677533-29fe5180-591c-11e9-84e5-e0f2d63be374.png)
+![all](https://user-images.githubusercontent.com/5866775/55725786-f5d08100-5a40-11e9-805e-e2dfa3c6cdd6.png)
+
 
 
 
