@@ -25,13 +25,14 @@ master and salver
 
 $masterKey = 0x2222;
 $salverKey = 0x2223;
+$key = 'hello';
 // add key to master
 $shmMaster = new Yangyao\ShmCache\ShmHashMap();
 $shmMaster->create($masterKey);
 $shmMaster->set('hello','world');
 // add key to salver
 $shmSalver = new Yangyao\ShmCache\ShmHashMap();
-$shmSalver->create($masterKey);
+$shmSalver->create($salverKey);
 $shmSalver->set('hello','world');
 // use the reader
 Yangyao\ShmCache\Reader::init($masterKey,$salverKey);

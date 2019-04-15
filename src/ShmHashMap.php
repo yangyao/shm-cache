@@ -15,7 +15,7 @@ class ShmHashMap
      * @param $shmKey
      * @param int $buckets
      * @param int $size
-     * @return bool
+     * @return ShmHashMap
      * @throws Exception
      */
     public function create($shmKey, $buckets = 12281, $size = 10000000)
@@ -29,7 +29,7 @@ class ShmHashMap
                 throw new Exception('delete exist shm 0x' . dechex($shmKey) . ' error');
             }
         }
-        $this->shmId = shmop_open($shmKey, 'c', 0777, $size);
+        $this->shmId = @shmop_open($shmKey, 'c', 0777, $size);
         if ($this->shmId == false) {
             throw new Exception('create shm 0x' . dechex($shmKey) . ' error');
         }
@@ -40,12 +40,13 @@ class ShmHashMap
         $head['start'] = 24;
         $head['data'] = $buckets * 4 + 24;
         $head['free'] = $buckets * 4 + 24;
-        return $this->setHead($head);
+        $this->setHead($head);
+        return $this;
     }
 
     /**
      * @param $shmKey
-     * @return array|bool
+     * @return $this|bool
      * @throws Exception
      */
     public function attach($shmKey)
@@ -60,7 +61,20 @@ class ShmHashMap
         if ($this->shmId == false) {
             throw new Exception("attach 0x" . dechex($shmKey) . " shm error");
         }
-        return $this->getHead();
+        $this->getHead();
+        return $this;
+    }
+
+    /**
+     * delete cache
+     * @param $shmKey
+     * @throws Exception
+     */
+    public function delete($shmKey)
+    {
+        if (!shmop_delete($this->shmId)) {
+            throw new Exception('delete exist shm 0x' . dechex($shmKey) . ' error');
+        }
     }
 
     /**
